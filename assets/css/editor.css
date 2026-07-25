@@ -1,0 +1,47 @@
+/* Stereoscopic Image Viewer — block editor styles */
+
+.wpsv-block-edit {
+	min-height: 80px;
+}
+
+/* Placeholder shown when no image is selected */
+.wpsv-placeholder {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+	background: #f6f7f7;
+	border: 2px dashed #c3c4c7;
+	color: #787c82;
+	min-height: 120px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.wpsv-placeholder p {
+	margin: 0.5rem 0 0;
+	font-size: 0.875rem;
+}
+
+/* Image preview shown when a source image is selected */
+.wpsv-editor-preview {
+	position: relative;
+	background: #101010;
+	line-height: 0;
+}
+
+/* Mode label overlaid on the preview image */
+.wpsv-editor-mode-badge {
+	position: absolute;
+	bottom: 8px;
+	left: 8px;
+	background: rgba(0, 0, 0, 0.65);
+	color: #fff;
+	font-size: 11px;
+	font-family: monospace;
+	padding: 3px 7px;
+	border-radius: 3px;
+	line-height: 1.4;
+	pointer-events: none;
+}

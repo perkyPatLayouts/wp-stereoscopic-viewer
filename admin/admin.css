@@ -1,0 +1,60 @@
+.wpsv-settings-wrap h1 {
+	margin-bottom: 1rem;
+}
+
+.wpsv-settings-wrap .form-table th {
+	width: 220px;
+}
+
+/* Hide the CDN URL row when "CDN" radio is selected */
+.wpsv-cdn-url-row {
+	display: none;
+}
+
+.wpsv-shortcode-docs {
+	max-width: 900px;
+	margin-top: 1.5rem;
+}
+
+.wpsv-shortcode-docs h2 {
+	margin-top: 0;
+}
+
+.wpsv-shortcode-docs h3 {
+	margin-top: 2rem;
+}
+
+.wpsv-shortcode-docs h4 {
+	margin: 1.25rem 0 0.25rem;
+}
+
+.wpsv-shortcode-docs pre {
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 3px;
+	padding: 0.75rem 1rem;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-break: break-word;
+	font-size: 12px;
+}
+
+.wpsv-shortcode-docs pre code {
+	background: transparent;
+	padding: 0;
+	font-size: 12px;
+}
+
+.wpsv-params-table {
+	margin-bottom: 1rem;
+}
+
+.wpsv-params-table th,
+.wpsv-params-table td {
+	vertical-align: top;
+}
+
+.wpsv-params-table code {
+	font-size: 12px;
+	white-space: nowrap;
+}

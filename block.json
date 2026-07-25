@@ -1,0 +1,122 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wp-stereoscopic-viewer/stereo-img",
+	"version": "1.0.0",
+	"title": "Stereoscopic Image",
+	"category": "media",
+	"icon": "format-image",
+	"description": "Display a stereoscopic 3D image from the media library.",
+	"keywords": [ "stereo", "3d", "anaglyph", "vr", "stereoscopic" ],
+	"textdomain": "wp-stereoscopic-viewer",
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"attributes": {
+		"src": {
+			"type": "string",
+			"default": "",
+			"description": "URL of the primary (or only) source image."
+		},
+		"srcRight": {
+			"type": "string",
+			"default": "",
+			"description": "URL of the right-eye image when sourceFormat is 'pair'."
+		},
+		"srcId": {
+			"type": "number",
+			"description": "Attachment ID of the primary image."
+		},
+		"srcRightId": {
+			"type": "number",
+			"description": "Attachment ID of the right-eye image."
+		},
+		"sourceFormat": {
+			"type": "string",
+			"default": "left-right",
+			"enum": [ "left-right", "top-bottom", "anaglyph-rc", "anaglyph-rb", "interlaced-row", "interlaced-col", "pair" ],
+			"description": "How the source image encodes left and right eyes."
+		},
+		"sourceSqueezeEnabled": {
+			"type": "boolean",
+			"default": false,
+			"description": "Source is anamorphic (half-width SBS or half-height TB). Unsqueeze when splitting."
+		},
+		"displayMode": {
+			"type": "string",
+			"default": "anaglyph-rc",
+			"enum": [ "side-by-side", "top-bottom", "anaglyph-rc", "anaglyph-rb", "interlaced-row", "interlaced-col", "left", "right", "wiggle" ],
+			"description": "How to display the image to the viewer."
+		},
+		"displaySqueezeEnabled": {
+			"type": "boolean",
+			"default": false,
+			"description": "Output as anamorphic (half-width SBS or half-height TB). Only applies to side-by-side and top-bottom display modes."
+		},
+		"swapSources": {
+			"type": "boolean",
+			"default": false,
+			"description": "Swap left and right eye sources."
+		},
+		"width": {
+			"type": "string",
+			"default": "100%",
+			"description": "CSS width value with unit: px, %, or vw."
+		},
+		"borderEnabled": {
+			"type": "boolean",
+			"default": false,
+			"description": "Show a border around the image."
+		},
+		"borderWidth": {
+			"type": "string",
+			"default": "1px",
+			"description": "CSS border width (e.g. 2px)."
+		},
+		"borderColor": {
+			"type": "string",
+			"default": "#000000",
+			"description": "CSS hex color for the border."
+		},
+		"shadowEnabled": {
+			"type": "boolean",
+			"default": false,
+			"description": "Apply a drop shadow to the image wrapper."
+		},
+		"shadowOffsetX": {
+			"type": "string",
+			"default": "0px",
+			"description": "Shadow horizontal offset (e.g. 0px, 4px)."
+		},
+		"shadowOffsetY": {
+			"type": "string",
+			"default": "4px",
+			"description": "Shadow vertical offset (e.g. 4px)."
+		},
+		"shadowBlur": {
+			"type": "string",
+			"default": "12px",
+			"description": "Shadow blur radius (e.g. 12px)."
+		},
+		"shadowSpread": {
+			"type": "string",
+			"default": "0px",
+			"description": "Shadow spread radius (e.g. 0px)."
+		},
+		"shadowColor": {
+			"type": "string",
+			"default": "rgba(0,0,0,0.25)",
+			"description": "Shadow color (CSS color value, e.g. rgba(0,0,0,0.25))."
+		},
+		"controlslist": {
+			"type": "string",
+			"default": "wiggle left right anaglyph",
+			"description": "Space-separated list of mode-switching buttons to show in the stereo-img viewer. Valid tokens: wiggle, left, right, anaglyph. Leave empty to show all controls (including VR). Only applies when stereo-img renders the output."
+		}
+	},
+	"render": "file:./render.php",
+	"editorScript": "wpsv-block-editor",
+	"style": "wpsv-viewer",
+	"editorStyle": "wpsv-editor"
+}
