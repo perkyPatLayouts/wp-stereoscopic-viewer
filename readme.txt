@@ -1,12 +1,12 @@
 === Stereoscopic Image Viewer ===
-Contributors: tonyasch
+Contributors: nductiv
 Tags: 3d, stereoscopic, anaglyph, stereo, vr
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 7.02
 Requires PHP: 7.4
 Stable tag: 1.0.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: Apache License Version 2.0
+License URI: https://www.apache.org/licenses/LICENSE-2.0
 
 Display stereoscopic (3D) images from the WordPress media library using a Gutenberg block or shortcode.
 
@@ -133,14 +133,9 @@ Anamorphic (half-width side-by-side) source displayed as red-cyan anaglyph, with
 
 Yes. Every parameter can be overridden in the Gutenberg block's InspectorControls sidebar, or as an attribute in the shortcode.
 
-= Where does the stereo-img script load from? =
+= What is the default stereo-img URL? =
 
-By default the plugin serves the stereo-img web component (and its Three.js, exifr, and parser dependencies) from a copy bundled inside the plugin at `assets/vendor/stereo-img/`. No external requests are needed and the viewer will work offline.
-
-If you prefer, you can switch the "stereo-img Load Method" on the settings page to:
-
-* **External CDN** — load from `https://stereo-img.steren.fr/stereo-img.js`.
-* **Custom URL** — load from any URL you specify. Because stereo-img uses relative imports for its dependencies, the URL must point to a complete stereo-img release directory tree (not just the single JS file).
+The plugin uses the stereo-img web component from `https://stereo-img.steren.fr/stereo-img.js` and is incorporated here under Apache 2.0 license: https://www.apache.org/licenses/LICENSE-2.0
 
 == Examples ==
 
