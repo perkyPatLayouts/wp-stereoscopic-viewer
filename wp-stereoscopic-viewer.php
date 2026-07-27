@@ -6,10 +6,10 @@
  * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Author:            Tony Asch
- * Author URI:        https://tony.asch.com
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Author:            nductiv
+ * Author URI:        https://nductiv.com
+ * License:           Apache 2.0
+ * License URI:       https://www.apache.org/licenses/LICENSE-2.0
  * Text Domain:       wp-stereoscopic-viewer
  * Domain Path:       /languages
  */

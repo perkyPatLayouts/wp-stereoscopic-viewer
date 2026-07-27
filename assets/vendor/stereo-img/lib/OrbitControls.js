@@ -36,7 +36,7 @@ class OrbitControls extends EventDispatcher {
 		this.domElement.style.touchAction = 'none'; // disable touch scroll
 
 		// Set to false to disable this control
-		this.enabled = true;
+		this.enabled = false;
 
 		// "target" sets the location of focus, where the object orbits around
 		this.target = new Vector3();
@@ -1487,11 +1487,11 @@ class OrbitControls extends EventDispatcher {
 
 		scope.domElement.addEventListener( 'contextmenu', onContextMenu );
 
-		scope.domElement.addEventListener( 'pointerdown', onPointerDown );
-		scope.domElement.addEventListener( 'pointercancel', onPointerUp );
+//		scope.domElement.addEventListener( 'pointerdown', onPointerDown );
+//		scope.domElement.addEventListener( 'pointercancel', onPointerUp );
 		scope.domElement.addEventListener( 'wheel', onMouseWheel, { passive: false } );
 
-		const document = scope.domElement.getRootNode(); // offscreen canvas compatibility
+//		const document = scope.domElement.getRootNode(); // offscreen canvas compatibility
 
 		document.addEventListener( 'keydown', interceptControlDown, { passive: true, capture: true } );
 
