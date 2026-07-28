@@ -327,7 +327,7 @@ class Settings {
 			case 'radio':
 				foreach ( $args['options'] as $opt_val => $opt_label ) {
 					$extra = ( 'self' === $opt_val ) ? ' id="wpsv_load_method_self"' : '';
-					echo '<label><input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $opt_val ) . '"' . checked( $value, $opt_val, false ) . $extra . '> ' . esc_html( $opt_label ) . '</label><br>';
+					echo '<label><input type="radio" name="' . esc_attr( $name ) . '" value="' . esc_attr( $opt_val ) . '"' . checked( $value, $opt_val, false ) . esc_attr( $extra ) . '> ' . esc_html( $opt_label ) . '</label><br>';
 				}
 				break;
 		}

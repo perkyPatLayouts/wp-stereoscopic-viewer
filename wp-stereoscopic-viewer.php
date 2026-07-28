@@ -1,16 +1,15 @@
 <?php
 /**
  * Plugin Name:       Stereoscopic Image Viewer
- * Plugin URI:        https://github.com/tonyasch/wp-stereoscopic-viewer
+ * Plugin URI:        https://apps.nductiv.com/wp-stereoscopic-viewer/
  * Description:       Display stereoscopic 3D images from the WordPress media library using a Gutenberg block and shortcode.
  * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Author:            nductiv
- * Author URI:        https://nductiv.com
- * License:           Apache 2.0
- * License URI:       https://www.apache.org/licenses/LICENSE-2.0
- * Text Domain:       wp-stereoscopic-viewer
+ * Author:            Nductiv
+ * License:           GPLv2+
+ * License URI:       https://opensource.org/license/gpl-2.0
+ * Text Domain:       stereoscopic-image-viewer
  * Domain Path:       /languages
  */
 

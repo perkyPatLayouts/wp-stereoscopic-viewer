@@ -1,18 +1,18 @@
 === Stereoscopic Image Viewer ===
-Contributors: nductiv
-Tags: 3d, stereoscopic, anaglyph, stereo, vr
+Contributors: Nductiv
+Tags: 3d, stereoscopic, anaglyph, stereo
 Requires at least: 6.0
 Tested up to: 7.02
 Requires PHP: 7.4
 Stable tag: 1.0.0
-License: Apache License Version 2.0
-License URI: https://www.apache.org/licenses/LICENSE-2.0
-
-Display stereoscopic (3D) images from the WordPress media library using a Gutenberg block or shortcode.
-
-== Description ==
-
+License: GPLv2+
 Stereoscopic Image Viewer lets you embed 3D images on any WordPress post or page. It supports a wide range of source formats used by 3D cameras, phones, and editing software, and can display them in multiple viewing modes.
+
+= Description +
+
+Stereoscopic images (3D) rely on parallax, i.e. the difference between left and right eye views of a scene. Stereoscopic images contain separate left and right eye views, which can be displayed on a number of devices including: colored glasses, polarized glasses, VR headsets, etc... Wp-stereoscopic-viewer allows you do display stereoscopic images in Wordpress pages and posts. Stereoscopic images are first imported into the media library and then added to pages/posts with the block editor or short codes. The block attributes allow you to specify the source image format and the desired display format. Shortcodes provide the same functionality.
+
+[Detailed examples and full documentation](https://apps.nductiv.com/wp-stereoscopic-viewer/)
 
 = Supported Source Formats =
 
@@ -234,8 +234,8 @@ Show no controls at all (viewer is static, no mode switching):
 == Screenshots ==
 
 1. Gutenberg block in the editor with InspectorControls open
-2. Anaglyph red-cyan display mode on the front end
-3. Plugin settings page
+2. Plugin settings page
+3. Block editor icon
 
 == Changelog ==
 
