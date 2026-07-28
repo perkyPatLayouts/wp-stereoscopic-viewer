@@ -4,7 +4,7 @@
 
 [![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759B?logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
-[![License](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![License](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)]()https://www.gnu.org/licenses/gpl-2.0.html
 [![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg)](#changelog)
 
 ---
