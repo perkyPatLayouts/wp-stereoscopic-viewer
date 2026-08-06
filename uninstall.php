@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package WPStereoscopicViewer
+ * @package Nductiv\StereoscopicImageViewer
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -10,12 +10,12 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 if ( is_multisite() ) {
-	$site_ids = get_sites( array( 'fields' => 'ids' ) );
-	foreach ( $site_ids as $site_id ) {
-		switch_to_blog( $site_id );
-		delete_option( 'wpsv_settings' );
+	$sterimvi_site_ids = get_sites( array( 'fields' => 'ids' ) );
+	foreach ( $sterimvi_site_ids as $sterimvi_site_id ) {
+		switch_to_blog( $sterimvi_site_id );
+		delete_option( 'sterimvi_settings' );
 		restore_current_blog();
 	}
 } else {
-	delete_option( 'wpsv_settings' );
+	delete_option( 'sterimvi_settings' );
 }

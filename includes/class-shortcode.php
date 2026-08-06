@@ -1,18 +1,18 @@
 <?php
 /**
- * [stereo_img] shortcode.
+ * [sterimvi_image] shortcode.
  *
- * @package WPStereoscopicViewer
+ * @package Nductiv\StereoscopicImageViewer
  */
 
-namespace WPStereoscopicViewer;
+namespace Nductiv\StereoscopicImageViewer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Registers and handles the [stereo_img] shortcode.
+ * Registers and handles the [sterimvi_image] shortcode.
  *
  * All rendering is delegated to Block::render_viewer() so that
  * the shortcode and Gutenberg block always produce identical HTML.
@@ -25,7 +25,7 @@ class Shortcode {
 	 * @return void
 	 */
 	public function register_hooks(): void {
-		add_shortcode( 'stereo_img', array( $this, 'render' ) );
+		add_shortcode( 'sterimvi_image', array( $this, 'render' ) );
 	}
 
 	/**
@@ -60,7 +60,7 @@ class Shortcode {
 				'controlslist'    => $defaults['controlslist'],
 			),
 			$atts,
-			'stereo_img'
+			'sterimvi_image'
 		);
 
 		// Map snake_case shortcode params → camelCase block attribute names.

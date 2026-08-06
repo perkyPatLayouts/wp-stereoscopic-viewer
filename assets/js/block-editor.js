@@ -31,25 +31,25 @@
 	var useEffect         = wp.element.useEffect;
 
 	var SOURCE_FORMAT_OPTIONS = [
-		{ label: __( 'Side-by-side (left-right)', 'wp-stereoscopic-viewer' ), value: 'left-right' },
-		{ label: __( 'Top-bottom', 'wp-stereoscopic-viewer' ),               value: 'top-bottom' },
-		{ label: __( 'Anaglyph (red-cyan)', 'wp-stereoscopic-viewer' ),      value: 'anaglyph-rc' },
-		{ label: __( 'Anaglyph (red-blue)', 'wp-stereoscopic-viewer' ),      value: 'anaglyph-rb' },
-		{ label: __( 'Interlaced (row)', 'wp-stereoscopic-viewer' ),         value: 'interlaced-row' },
-		{ label: __( 'Interlaced (column)', 'wp-stereoscopic-viewer' ),      value: 'interlaced-col' },
-		{ label: __( 'Left/right image pair', 'wp-stereoscopic-viewer' ),    value: 'pair' },
+		{ label: __( 'Side-by-side (left-right)', 'stereoscopic-image-viewer' ), value: 'left-right' },
+		{ label: __( 'Top-bottom', 'stereoscopic-image-viewer' ),               value: 'top-bottom' },
+		{ label: __( 'Anaglyph (red-cyan)', 'stereoscopic-image-viewer' ),      value: 'anaglyph-rc' },
+		{ label: __( 'Anaglyph (red-blue)', 'stereoscopic-image-viewer' ),      value: 'anaglyph-rb' },
+		{ label: __( 'Interlaced (row)', 'stereoscopic-image-viewer' ),         value: 'interlaced-row' },
+		{ label: __( 'Interlaced (column)', 'stereoscopic-image-viewer' ),      value: 'interlaced-col' },
+		{ label: __( 'Left/right image pair', 'stereoscopic-image-viewer' ),    value: 'pair' },
 	];
 
 	var DISPLAY_MODE_OPTIONS = [
-		{ label: __( 'Anaglyph (red-cyan)', 'wp-stereoscopic-viewer' ),   value: 'anaglyph-rc' },
-		{ label: __( 'Anaglyph (red-blue)', 'wp-stereoscopic-viewer' ),   value: 'anaglyph-rb' },
-		{ label: __( 'Wiggle', 'wp-stereoscopic-viewer' ),                value: 'wiggle' },
-		{ label: __( 'Left eye only', 'wp-stereoscopic-viewer' ),         value: 'left' },
-		{ label: __( 'Right eye only', 'wp-stereoscopic-viewer' ),        value: 'right' },
-		{ label: __( 'Side-by-side', 'wp-stereoscopic-viewer' ),          value: 'side-by-side' },
-		{ label: __( 'Top-bottom', 'wp-stereoscopic-viewer' ),            value: 'top-bottom' },
-		{ label: __( 'Interlaced (row)', 'wp-stereoscopic-viewer' ),      value: 'interlaced-row' },
-		{ label: __( 'Interlaced (column)', 'wp-stereoscopic-viewer' ),   value: 'interlaced-col' },
+		{ label: __( 'Anaglyph (red-cyan)', 'stereoscopic-image-viewer' ),   value: 'anaglyph-rc' },
+		{ label: __( 'Anaglyph (red-blue)', 'stereoscopic-image-viewer' ),   value: 'anaglyph-rb' },
+		{ label: __( 'Wiggle', 'stereoscopic-image-viewer' ),                value: 'wiggle' },
+		{ label: __( 'Left eye only', 'stereoscopic-image-viewer' ),         value: 'left' },
+		{ label: __( 'Right eye only', 'stereoscopic-image-viewer' ),        value: 'right' },
+		{ label: __( 'Side-by-side', 'stereoscopic-image-viewer' ),          value: 'side-by-side' },
+		{ label: __( 'Top-bottom', 'stereoscopic-image-viewer' ),            value: 'top-bottom' },
+		{ label: __( 'Interlaced (row)', 'stereoscopic-image-viewer' ),      value: 'interlaced-row' },
+		{ label: __( 'Interlaced (column)', 'stereoscopic-image-viewer' ),   value: 'interlaced-col' },
 	];
 
 	// Only SBS/TB display modes support the squeeze option.
@@ -63,10 +63,10 @@
 
 	// Valid controlslist tokens (mirrors class-block.php).
 	var CONTROL_TOKENS = [
-		{ value: 'wiggle',   label: __( 'Wiggle',            'wp-stereoscopic-viewer' ) },
-		{ value: 'left',     label: __( 'Left eye only',     'wp-stereoscopic-viewer' ) },
-		{ value: 'right',    label: __( 'Right eye only',    'wp-stereoscopic-viewer' ) },
-		{ value: 'anaglyph', label: __( 'Anaglyph (red-cyan)', 'wp-stereoscopic-viewer' ) },
+		{ value: 'wiggle',   label: __( 'Wiggle',            'stereoscopic-image-viewer' ) },
+		{ value: 'left',     label: __( 'Left eye only',     'stereoscopic-image-viewer' ) },
+		{ value: 'right',    label: __( 'Right eye only',    'stereoscopic-image-viewer' ) },
+		{ value: 'anaglyph', label: __( 'Anaglyph (red-cyan)', 'stereoscopic-image-viewer' ) },
 	];
 
 	function hasControl( controlslist, token ) {
@@ -84,17 +84,17 @@
 	}
 
 	// PHP site-wide defaults, injected via wp_localize_script.
-	var wpsvD = window.wpsvDefaults || {};
+	var sterimviD = window.sterimviDefaults || {};
 	function siteDefault( key, fallback ) {
-		return wpsvD[ key ] !== undefined ? wpsvD[ key ] : fallback;
+		return sterimviD[ key ] !== undefined ? sterimviD[ key ] : fallback;
 	}
 
 	try {
-		registerBlockType( 'wp-stereoscopic-viewer/stereo-img', {
+		registerBlockType( 'stereoscopic-image-viewer/stereo-img', {
 
 			// Full attribute schema — must match block.json exactly so Gutenberg
 			// serialises every attribute (including src) to the block comment.
-			// Plugin-configurable attributes pull their defaults from wpsvDefaults
+			// Plugin-configurable attributes pull their defaults from sterimviDefaults
 			// (injected via wp_localize_script) so new blocks respect site settings.
 			attributes: {
 				src:                   { type: 'string',  default: '' },
@@ -125,8 +125,8 @@
 
 				// useBlockProps adds WP block wrapper attributes (class, data-block, etc.).
 				var blockProps = useBlockProps
-					? useBlockProps( { className: 'wpsv-block-edit' } )
-					: { className: 'wpsv-block-edit' };
+					? useBlockProps( { className: 'sterimvi-block-edit' } )
+					: { className: 'sterimvi-block-edit' };
 
 				// Canvas ref used for the live editor preview.
 				var canvasRef = useRef( null );
@@ -139,7 +139,7 @@
 				// ── Live canvas preview ──────────────────────────────────────────────
 				useEffect( function () {
 					var canvas = canvasRef.current;
-					if ( ! canvas || ! attributes.src || ! isCanvasPreview || typeof window.WPSVRenderer === 'undefined' ) {
+					if ( ! canvas || ! attributes.src || ! isCanvasPreview || typeof window.SterimviRenderer === 'undefined' ) {
 						return;
 					}
 
@@ -148,17 +148,17 @@
 					var splitPromise;
 					if ( 'pair' === attributes.sourceFormat && attributes.srcRight ) {
 						splitPromise = Promise.all( [
-							WPSVRenderer.loadImage( attributes.src, true ),
-							WPSVRenderer.loadImage( attributes.srcRight, true ),
+							SterimviRenderer.loadImage( attributes.src, true ),
+							SterimviRenderer.loadImage( attributes.srcRight, true ),
 						] ).then( function ( imgs ) {
-							return WPSVRenderer.splitPair( imgs[ 0 ], imgs[ 1 ], attributes.swapSources );
+							return SterimviRenderer.splitPair( imgs[ 0 ], imgs[ 1 ], attributes.swapSources );
 						} );
 					} else {
-						splitPromise = WPSVRenderer.loadImage( attributes.src, true ).then( function ( img ) {
+						splitPromise = SterimviRenderer.loadImage( attributes.src, true ).then( function ( img ) {
 							if ( 'top-bottom' === attributes.sourceFormat || 'bottom-top' === attributes.sourceFormat ) {
-								return WPSVRenderer.splitTopBottom( img, attributes.swapSources, attributes.sourceSqueezeEnabled );
+								return SterimviRenderer.splitTopBottom( img, attributes.swapSources, attributes.sourceSqueezeEnabled );
 							}
-							return WPSVRenderer.splitLeftRight( img, attributes.swapSources, attributes.sourceSqueezeEnabled );
+							return SterimviRenderer.splitLeftRight( img, attributes.swapSources, attributes.sourceSqueezeEnabled );
 						} );
 					}
 
@@ -166,19 +166,19 @@
 						if ( cancelled ) { return; }
 						switch ( attributes.displayMode ) {
 							case 'side-by-side':
-								WPSVRenderer.renderSideBySide( split.left, split.right, canvas, attributes.displaySqueezeEnabled );
+								SterimviRenderer.renderSideBySide( split.left, split.right, canvas, attributes.displaySqueezeEnabled );
 								break;
 							case 'top-bottom':
-								WPSVRenderer.renderTopBottom( split.left, split.right, canvas, attributes.displaySqueezeEnabled );
+								SterimviRenderer.renderTopBottom( split.left, split.right, canvas, attributes.displaySqueezeEnabled );
 								break;
 							case 'anaglyph-rb':
-								WPSVRenderer.renderAnaglyphRB( split.left, split.right, canvas );
+								SterimviRenderer.renderAnaglyphRB( split.left, split.right, canvas );
 								break;
 							case 'interlaced-row':
-								WPSVRenderer.renderInterlacedRows( split.left, split.right, canvas );
+								SterimviRenderer.renderInterlacedRows( split.left, split.right, canvas );
 								break;
 							case 'interlaced-col':
-								WPSVRenderer.renderInterlacedCols( split.left, split.right, canvas );
+								SterimviRenderer.renderInterlacedCols( split.left, split.right, canvas );
 								break;
 							default:
 								canvas.width  = split.left.width;
@@ -187,7 +187,7 @@
 						}
 					} ).catch( function ( err ) {
 						if ( ! cancelled ) {
-							WPSVRenderer.showCanvasError( canvas, err.message || 'Image load failed' );
+							SterimviRenderer.showCanvasError( canvas, err.message || 'Image load failed' );
 						}
 					} );
 
@@ -215,10 +215,10 @@
 				var inspector = el( InspectorControls, null,
 
 					// Panel: Source Image
-					el( PanelBody, { title: __( 'Source Image', 'wp-stereoscopic-viewer' ), initialOpen: true },
+					el( PanelBody, { title: __( 'Source Image', 'stereoscopic-image-viewer' ), initialOpen: true },
 
 						el( 'p', { style: { fontWeight: 600, marginBottom: '4px' } },
-							__( 'Primary Image', 'wp-stereoscopic-viewer' )
+							__( 'Primary Image', 'stereoscopic-image-viewer' )
 						),
 						el( MediaUploadCheck, null,
 							el( MediaUpload, {
@@ -231,15 +231,15 @@
 									return mediaButton(
 										ref.open,
 										!! attributes.src,
-										__( 'Select Image', 'wp-stereoscopic-viewer' ),
-										__( 'Change Image', 'wp-stereoscopic-viewer' )
+										__( 'Select Image', 'stereoscopic-image-viewer' ),
+										__( 'Change Image', 'stereoscopic-image-viewer' )
 									);
 								},
 							} )
 						),
 
 						el( SelectControl, {
-							label:    __( 'Source Format', 'wp-stereoscopic-viewer' ),
+							label:    __( 'Source Format', 'stereoscopic-image-viewer' ),
 							value:    attributes.sourceFormat,
 							options:  SOURCE_FORMAT_OPTIONS,
 							onChange: function ( val ) { setAttributes( { sourceFormat: val } ); },
@@ -248,8 +248,8 @@
 						// Squeeze toggle — only for SBS/TB source formats.
 						SQUEEZE_SOURCE_FORMATS.indexOf( attributes.sourceFormat ) !== -1 &&
 							el( ToggleControl, {
-								label:   __( 'Source is Anamorphic (Squeezed)', 'wp-stereoscopic-viewer' ),
-								help:    __( 'Enable for half-width SBS or half-height TB images.', 'wp-stereoscopic-viewer' ),
+								label:   __( 'Source is Anamorphic (Squeezed)', 'stereoscopic-image-viewer' ),
+								help:    __( 'Enable for half-width SBS or half-height TB images.', 'stereoscopic-image-viewer' ),
 								checked: attributes.sourceSqueezeEnabled,
 								onChange: function ( val ) { setAttributes( { sourceSqueezeEnabled: val } ); },
 							} ),
@@ -257,7 +257,7 @@
 						// Right-eye image picker — only for pair mode.
 						attributes.sourceFormat === 'pair' && el( Fragment, null,
 							el( 'p', { style: { fontWeight: 600, marginBottom: '4px', marginTop: '12px' } },
-								__( 'Right Eye Image', 'wp-stereoscopic-viewer' )
+								__( 'Right Eye Image', 'stereoscopic-image-viewer' )
 							),
 							el( MediaUploadCheck, null,
 								el( MediaUpload, {
@@ -270,8 +270,8 @@
 										return mediaButton(
 											ref.open,
 											!! attributes.srcRight,
-											__( 'Select Right Image', 'wp-stereoscopic-viewer' ),
-											__( 'Change Right Image', 'wp-stereoscopic-viewer' )
+											__( 'Select Right Image', 'stereoscopic-image-viewer' ),
+											__( 'Change Right Image', 'stereoscopic-image-viewer' )
 										);
 									},
 								} )
@@ -280,10 +280,10 @@
 					),
 
 					// Panel: Display
-					el( PanelBody, { title: __( 'Display', 'wp-stereoscopic-viewer' ), initialOpen: true },
+					el( PanelBody, { title: __( 'Display', 'stereoscopic-image-viewer' ), initialOpen: true },
 
 						el( SelectControl, {
-							label:    __( 'Display Mode', 'wp-stereoscopic-viewer' ),
+							label:    __( 'Display Mode', 'stereoscopic-image-viewer' ),
 							value:    attributes.displayMode,
 							options:  DISPLAY_MODE_OPTIONS,
 							onChange: function ( val ) { setAttributes( { displayMode: val } ); },
@@ -292,15 +292,15 @@
 						// Squeeze output toggle — only for SBS/TB display modes.
 						SQUEEZE_DISPLAY_MODES.indexOf( attributes.displayMode ) !== -1 &&
 							el( ToggleControl, {
-								label:   __( 'Anamorphic (Squeezed) Output', 'wp-stereoscopic-viewer' ),
-								help:    __( 'Compresses each eye to half-width (SBS) or half-height (TB).', 'wp-stereoscopic-viewer' ),
+								label:   __( 'Anamorphic (Squeezed) Output', 'stereoscopic-image-viewer' ),
+								help:    __( 'Compresses each eye to half-width (SBS) or half-height (TB).', 'stereoscopic-image-viewer' ),
 								checked: attributes.displaySqueezeEnabled,
 								onChange: function ( val ) { setAttributes( { displaySqueezeEnabled: val } ); },
 							} ),
 
 						el( ToggleControl, {
-							label:   __( 'Swap Left / Right', 'wp-stereoscopic-viewer' ),
-							help:    __( 'Reverse which side is treated as the left eye.', 'wp-stereoscopic-viewer' ),
+							label:   __( 'Swap Left / Right', 'stereoscopic-image-viewer' ),
+							help:    __( 'Reverse which side is treated as the left eye.', 'stereoscopic-image-viewer' ),
 							checked: attributes.swapSources,
 							onChange: function ( val ) { setAttributes( { swapSources: val } ); },
 						} ),
@@ -308,10 +308,10 @@
 						// Viewer controls — only relevant when stereo-img renders the output.
 						! isCanvasPreview && el( Fragment, null,
 							el( 'p', { style: { fontWeight: 600, marginTop: '12px', marginBottom: '4px' } },
-								__( 'Viewer Controls', 'wp-stereoscopic-viewer' )
+								__( 'Viewer Controls', 'stereoscopic-image-viewer' )
 							),
 							el( 'p', { style: { fontSize: '12px', color: '#757575', marginBottom: '8px' } },
-								__( 'Mode-switching buttons shown in the stereo-img viewer.', 'wp-stereoscopic-viewer' )
+								__( 'Mode-switching buttons shown in the stereo-img viewer.', 'stereoscopic-image-viewer' )
 							),
 							CONTROL_TOKENS.map( function ( ctrl ) {
 								return el( ToggleControl, {
@@ -327,31 +327,31 @@
 					),
 
 					// Panel: Size & Style
-					el( PanelBody, { title: __( 'Size & Style', 'wp-stereoscopic-viewer' ), initialOpen: false },
+					el( PanelBody, { title: __( 'Size & Style', 'stereoscopic-image-viewer' ), initialOpen: false },
 
 						el( TextControl, {
-							label:   __( 'Width', 'wp-stereoscopic-viewer' ),
-							help:    __( 'e.g. 640px, 100%, 80vw', 'wp-stereoscopic-viewer' ),
+							label:   __( 'Width', 'stereoscopic-image-viewer' ),
+							help:    __( 'e.g. 640px, 100%, 80vw', 'stereoscopic-image-viewer' ),
 							value:   attributes.width,
 							onChange: function ( val ) { setAttributes( { width: val } ); },
 						} ),
 
 						el( ToggleControl, {
-							label:   __( 'Border', 'wp-stereoscopic-viewer' ),
+							label:   __( 'Border', 'stereoscopic-image-viewer' ),
 							checked: attributes.borderEnabled,
 							onChange: function ( val ) { setAttributes( { borderEnabled: val } ); },
 						} ),
 
 						attributes.borderEnabled && el( Fragment, null,
 							el( TextControl, {
-								label:   __( 'Border Width', 'wp-stereoscopic-viewer' ),
-								help:    __( 'e.g. 1px, 2px', 'wp-stereoscopic-viewer' ),
+								label:   __( 'Border Width', 'stereoscopic-image-viewer' ),
+								help:    __( 'e.g. 1px, 2px', 'stereoscopic-image-viewer' ),
 								value:   attributes.borderWidth,
 								onChange: function ( val ) { setAttributes( { borderWidth: val } ); },
 							} ),
 							el( 'div', { style: { marginBottom: '16px' } },
 								el( 'label', { style: { display: 'block', marginBottom: '4px', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase' } },
-									__( 'Border Color', 'wp-stereoscopic-viewer' )
+									__( 'Border Color', 'stereoscopic-image-viewer' )
 								),
 								el( 'input', {
 									type: 'color',
@@ -363,39 +363,39 @@
 						),
 
 						el( ToggleControl, {
-							label:   __( 'Drop Shadow', 'wp-stereoscopic-viewer' ),
+							label:   __( 'Drop Shadow', 'stereoscopic-image-viewer' ),
 							checked: attributes.shadowEnabled,
 							onChange: function ( val ) { setAttributes( { shadowEnabled: val } ); },
 						} ),
 
 						attributes.shadowEnabled && el( Fragment, null,
 							el( TextControl, {
-								label:   __( 'Shadow Color', 'wp-stereoscopic-viewer' ),
-								help:    __( 'CSS color: hex, rgb(), rgba(), hsl()', 'wp-stereoscopic-viewer' ),
+								label:   __( 'Shadow Color', 'stereoscopic-image-viewer' ),
+								help:    __( 'CSS color: hex, rgb(), rgba(), hsl()', 'stereoscopic-image-viewer' ),
 								value:   attributes.shadowColor,
 								onChange: function ( val ) { setAttributes( { shadowColor: val } ); },
 							} ),
 							el( TextControl, {
-								label:   __( 'Shadow Horizontal Offset', 'wp-stereoscopic-viewer' ),
-								help:    __( 'e.g. 0px, 4px, -4px', 'wp-stereoscopic-viewer' ),
+								label:   __( 'Shadow Horizontal Offset', 'stereoscopic-image-viewer' ),
+								help:    __( 'e.g. 0px, 4px, -4px', 'stereoscopic-image-viewer' ),
 								value:   attributes.shadowOffsetX,
 								onChange: function ( val ) { setAttributes( { shadowOffsetX: val } ); },
 							} ),
 							el( TextControl, {
-								label:   __( 'Shadow Vertical Offset', 'wp-stereoscopic-viewer' ),
-								help:    __( 'e.g. 4px', 'wp-stereoscopic-viewer' ),
+								label:   __( 'Shadow Vertical Offset', 'stereoscopic-image-viewer' ),
+								help:    __( 'e.g. 4px', 'stereoscopic-image-viewer' ),
 								value:   attributes.shadowOffsetY,
 								onChange: function ( val ) { setAttributes( { shadowOffsetY: val } ); },
 							} ),
 							el( TextControl, {
-								label:   __( 'Shadow Blur Radius', 'wp-stereoscopic-viewer' ),
-								help:    __( 'e.g. 12px', 'wp-stereoscopic-viewer' ),
+								label:   __( 'Shadow Blur Radius', 'stereoscopic-image-viewer' ),
+								help:    __( 'e.g. 12px', 'stereoscopic-image-viewer' ),
 								value:   attributes.shadowBlur,
 								onChange: function ( val ) { setAttributes( { shadowBlur: val } ); },
 							} ),
 							el( TextControl, {
-								label:   __( 'Shadow Spread Radius', 'wp-stereoscopic-viewer' ),
-								help:    __( 'e.g. 0px', 'wp-stereoscopic-viewer' ),
+								label:   __( 'Shadow Spread Radius', 'stereoscopic-image-viewer' ),
+								help:    __( 'e.g. 0px', 'stereoscopic-image-viewer' ),
 								value:   attributes.shadowSpread,
 								onChange: function ( val ) { setAttributes( { shadowSpread: val } ); },
 							} )
@@ -411,29 +411,29 @@
 				var preview;
 				if ( attributes.src ) {
 					if ( isCanvasPreview ) {
-						// Canvas renderer path: live rendered output via WPSVRenderer.
-						preview = el( 'div', { className: 'wpsv-editor-preview' },
+						// Canvas renderer path: live rendered output via SterimviRenderer.
+						preview = el( 'div', { className: 'sterimvi-editor-preview' },
 							el( 'canvas', {
 								ref:   canvasRef,
 								style: { display: 'block', width: '100%', height: 'auto' },
 							} ),
-							el( 'div', { className: 'wpsv-editor-mode-badge' }, badgeLabel )
+							el( 'div', { className: 'sterimvi-editor-mode-badge' }, badgeLabel )
 						);
 					} else {
 						// stereo-img path: show raw source image with a mode badge.
-						preview = el( 'div', { className: 'wpsv-editor-preview' },
+						preview = el( 'div', { className: 'sterimvi-editor-preview' },
 							el( 'img', {
 								src:   attributes.src,
 								alt:   '',
 								style: { display: 'block', width: '100%', height: 'auto', maxHeight: '400px', objectFit: 'contain' },
 							} ),
-							el( 'div', { className: 'wpsv-editor-mode-badge' }, badgeLabel )
+							el( 'div', { className: 'sterimvi-editor-mode-badge' }, badgeLabel )
 						);
 					}
 				} else {
-					preview = el( 'div', { className: 'wpsv-placeholder' },
+					preview = el( 'div', { className: 'sterimvi-placeholder' },
 						el( 'span', { className: 'dashicons dashicons-format-image', style: { fontSize: '40px', width: '40px', height: '40px', color: '#aaa' } } ),
-						el( 'p', null, __( 'Select a source image in the sidebar.', 'wp-stereoscopic-viewer' ) )
+						el( 'p', null, __( 'Select a source image in the sidebar.', 'stereoscopic-image-viewer' ) )
 					);
 				}
 

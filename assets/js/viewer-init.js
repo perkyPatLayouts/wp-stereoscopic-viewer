@@ -1,19 +1,19 @@
 /**
  * Front-end initializer.
  *
- * Finds all .wpsv-canvas elements and dispatches each to the appropriate
- * WPSVRenderer function based on data-display-mode.
+ * Finds all .sterimvi-canvas elements and dispatches each to the appropriate
+ * SterimviRenderer function based on data-display-mode.
  *
  * Depends on renderer.js (listed as a wp_enqueue_script dependency).
  */
 document.addEventListener( 'DOMContentLoaded', function () {
 	'use strict';
 
-	if ( typeof window.WPSVRenderer === 'undefined' ) {
+	if ( typeof window.SterimviRenderer === 'undefined' ) {
 		return;
 	}
 
-	var canvases = document.querySelectorAll( '.wpsv-wrapper canvas.wpsv-canvas' );
+	var canvases = document.querySelectorAll( '.sterimvi-wrapper canvas.sterimvi-canvas' );
 	if ( ! canvases.length ) {
 		return;
 	}
@@ -22,23 +22,23 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		var displayMode    = canvas.dataset.displayMode || '';
 		var displaySqueeze = canvas.dataset.displaySqueeze === '1';
 
-		WPSVRenderer.getSplitFromCanvas( canvas )
+		SterimviRenderer.getSplitFromCanvas( canvas )
 			.then( function ( pair ) {
 				switch ( displayMode ) {
 					case 'side-by-side':
-						WPSVRenderer.renderSideBySide( pair.left, pair.right, canvas, displaySqueeze );
+						SterimviRenderer.renderSideBySide( pair.left, pair.right, canvas, displaySqueeze );
 						break;
 					case 'top-bottom':
-						WPSVRenderer.renderTopBottom( pair.left, pair.right, canvas, displaySqueeze );
+						SterimviRenderer.renderTopBottom( pair.left, pair.right, canvas, displaySqueeze );
 						break;
 					case 'anaglyph-rb':
-						WPSVRenderer.renderAnaglyphRB( pair.left, pair.right, canvas );
+						SterimviRenderer.renderAnaglyphRB( pair.left, pair.right, canvas );
 						break;
 					case 'interlaced-row':
-						WPSVRenderer.renderInterlacedRows( pair.left, pair.right, canvas );
+						SterimviRenderer.renderInterlacedRows( pair.left, pair.right, canvas );
 						break;
 					case 'interlaced-col':
-						WPSVRenderer.renderInterlacedCols( pair.left, pair.right, canvas );
+						SterimviRenderer.renderInterlacedCols( pair.left, pair.right, canvas );
 						break;
 					default:
 						// Fallback: show left eye.
@@ -52,7 +52,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 				var msg = isCorsError
 					? 'Cannot read image pixels (CORS). The image must be served from the same domain.'
 					: ( err.message || 'Unknown error' );
-				WPSVRenderer.showCanvasError( canvas, msg );
+				SterimviRenderer.showCanvasError( canvas, msg );
 			} );
 	} );
 } );

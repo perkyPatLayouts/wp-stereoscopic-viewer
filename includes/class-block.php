@@ -2,10 +2,10 @@
 /**
  * Gutenberg block registration and shared PHP renderer.
  *
- * @package WPStereoscopicViewer
+ * @package Nductiv\StereoscopicImageViewer
  */
 
-namespace WPStereoscopicViewer;
+namespace Nductiv\StereoscopicImageViewer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -62,39 +62,39 @@ class Block {
 	 */
 	public function register_block(): void {
 		wp_register_script(
-			'wpsv-renderer',
-			WPSV_URL . 'assets/js/renderer.js',
+			'sterimvi-renderer',
+			STERIMVI_URL . 'assets/js/renderer.js',
 			array(),
-			WPSV_VERSION,
+			STERIMVI_VERSION,
 			true
 		);
 
 		wp_register_script(
-			'wpsv-block-editor',
-			WPSV_URL . 'assets/js/block-editor.js',
-			array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wpsv-renderer' ),
-			WPSV_VERSION,
+			'sterimvi-block-editor',
+			STERIMVI_URL . 'assets/js/block-editor.js',
+			array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'sterimvi-renderer' ),
+			STERIMVI_VERSION,
 			true
 		);
 
 		// Expose site-wide defaults so the editor can pre-fill new blocks correctly.
-		wp_localize_script( 'wpsv-block-editor', 'wpsvDefaults', Settings::get_defaults() );
+		wp_localize_script( 'sterimvi-block-editor', 'sterimviDefaults', Settings::get_defaults() );
 
 		wp_register_style(
-			'wpsv-editor',
-			WPSV_URL . 'assets/css/editor.css',
+			'sterimvi-editor',
+			STERIMVI_URL . 'assets/css/editor.css',
 			array( 'wp-edit-blocks' ),
-			WPSV_VERSION
+			STERIMVI_VERSION
 		);
 
 		wp_register_style(
-			'wpsv-viewer',
-			WPSV_URL . 'assets/css/viewer.css',
+			'sterimvi-viewer',
+			STERIMVI_URL . 'assets/css/viewer.css',
 			array(),
-			WPSV_VERSION
+			STERIMVI_VERSION
 		);
 
-		register_block_type( WPSV_DIR );
+		register_block_type( STERIMVI_DIR );
 	}
 
 	/**
@@ -183,7 +183,7 @@ class Block {
 			$inner = self::render_stereo_img( $src, $src_right, $source_format, $display_mode, $swap, $controlslist );
 		}
 
-		return '<div class="wpsv-wrapper" style="' . esc_attr( $wrapper_style ) . '">' . $inner . '</div>';
+		return '<div class="sterimvi-wrapper" style="' . esc_attr( $wrapper_style ) . '">' . $inner . '</div>';
 	}
 
 	/**
@@ -271,6 +271,6 @@ class Block {
 			$data_attrs[] = 'data-src-right="' . esc_attr( $src_right ) . '"';
 		}
 
-		return '<canvas class="wpsv-canvas" ' . implode( ' ', $data_attrs ) . '></canvas>';
+		return '<canvas class="sterimvi-canvas" ' . implode( ' ', $data_attrs ) . '></canvas>';
 	}
 }

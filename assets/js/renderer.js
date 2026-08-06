@@ -1,13 +1,13 @@
 /**
- * WPSVRenderer — Canvas 2D renderer for stereoscopic display modes not
+ * SterimviRenderer — Canvas 2D renderer for stereoscopic display modes not
  * supported by the stereo-img web component.
  *
  * Covers: anaglyph red-blue, interlaced row/col, side-by-side composite,
  * top-bottom composite, and anamorphic squeeze/unsqueeze for all of the above.
  *
- * Exposed as window.WPSVRenderer (no module bundler required).
+ * Exposed as window.SterimviRenderer (no module bundler required).
  */
-window.WPSVRenderer = ( function () {
+window.SterimviRenderer = ( function () {
 	'use strict';
 
 	/**

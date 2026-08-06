@@ -1,34 +1,34 @@
-.wpsv-settings-wrap h1 {
+.sterimvi-settings-wrap h1 {
 	margin-bottom: 1rem;
 }
 
-.wpsv-settings-wrap .form-table th {
+.sterimvi-settings-wrap .form-table th {
 	width: 220px;
 }
 
 /* Hide the CDN URL row when "CDN" radio is selected */
-.wpsv-cdn-url-row {
+.sterimvi-cdn-url-row {
 	display: none;
 }
 
-.wpsv-shortcode-docs {
+.sterimvi-shortcode-docs {
 	max-width: 900px;
 	margin-top: 1.5rem;
 }
 
-.wpsv-shortcode-docs h2 {
+.sterimvi-shortcode-docs h2 {
 	margin-top: 0;
 }
 
-.wpsv-shortcode-docs h3 {
+.sterimvi-shortcode-docs h3 {
 	margin-top: 2rem;
 }
 
-.wpsv-shortcode-docs h4 {
+.sterimvi-shortcode-docs h4 {
 	margin: 1.25rem 0 0.25rem;
 }
 
-.wpsv-shortcode-docs pre {
+.sterimvi-shortcode-docs pre {
 	background: #f6f7f7;
 	border: 1px solid #dcdcde;
 	border-radius: 3px;
@@ -39,22 +39,22 @@
 	font-size: 12px;
 }
 
-.wpsv-shortcode-docs pre code {
+.sterimvi-shortcode-docs pre code {
 	background: transparent;
 	padding: 0;
 	font-size: 12px;
 }
 
-.wpsv-params-table {
+.sterimvi-params-table {
 	margin-bottom: 1rem;
 }
 
-.wpsv-params-table th,
-.wpsv-params-table td {
+.sterimvi-params-table th,
+.sterimvi-params-table td {
 	vertical-align: top;
 }
 
-.wpsv-params-table code {
+.sterimvi-params-table code {
 	font-size: 12px;
 	white-space: nowrap;
 }

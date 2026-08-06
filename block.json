@@ -1,14 +1,14 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "wp-stereoscopic-viewer/stereo-img",
+	"name": "stereoscopic-image-viewer/stereo-img",
 	"version": "1.0.0",
 	"title": "Stereoscopic Image",
 	"category": "media",
 	"icon": "format-image",
 	"description": "Display a stereoscopic 3D image from the media library.",
 	"keywords": [ "stereo", "3d", "anaglyph", "vr", "stereoscopic" ],
-	"textdomain": "wp-stereoscopic-viewer",
+	"textdomain": "stereoscopic-image-viewer",
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ]
@@ -116,7 +116,7 @@
 		}
 	},
 	"render": "file:./render.php",
-	"editorScript": "wpsv-block-editor",
-	"style": "wpsv-viewer",
-	"editorStyle": "wpsv-editor"
+	"editorScript": "sterimvi-block-editor",
+	"style": "sterimvi-viewer",
+	"editorStyle": "sterimvi-editor"
 }

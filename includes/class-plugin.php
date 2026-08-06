@@ -2,10 +2,10 @@
 /**
  * Core plugin class.
  *
- * @package WPStereoscopicViewer
+ * @package Nductiv\StereoscopicImageViewer
  */
 
-namespace WPStereoscopicViewer;
+namespace Nductiv\StereoscopicImageViewer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -41,10 +41,10 @@ class Plugin {
 	 * @return void
 	 */
 	private function init(): void {
-		require_once WPSV_DIR . 'includes/class-settings.php';
-		require_once WPSV_DIR . 'includes/class-assets.php';
-		require_once WPSV_DIR . 'includes/class-block.php';
-		require_once WPSV_DIR . 'includes/class-shortcode.php';
+		require_once STERIMVI_DIR . 'includes/class-settings.php';
+		require_once STERIMVI_DIR . 'includes/class-assets.php';
+		require_once STERIMVI_DIR . 'includes/class-block.php';
+		require_once STERIMVI_DIR . 'includes/class-shortcode.php';
 
 		$settings  = new Settings();
 		$assets    = new Assets();
@@ -55,7 +55,5 @@ class Plugin {
 		$assets->register_hooks();
 		$block->register_hooks();
 		$shortcode->register_hooks();
-
-		load_plugin_textdomain( 'wp-stereoscopic-viewer', false, dirname( plugin_basename( WPSV_DIR . 'wp-stereoscopic-viewer.php' ) ) . '/languages' );
 	}
 }

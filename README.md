@@ -4,7 +4,7 @@
 
 [![WordPress](https://img.shields.io/badge/WordPress-6.0%2B-21759B?logo=wordpress&logoColor=white)](https://wordpress.org/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
-[![License](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)]()https://www.gnu.org/licenses/gpl-2.0.html
+[![License](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![Version](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg)](#changelog)
 
 ---
@@ -20,6 +20,7 @@
 - [Examples](#examples)
 - [FAQ](#faq)
 - [Where does the stereo-img script load from?](#where-does-the-stereo-img-script-load-from)
+- [Developer Reference](#developer-reference)
 - [Screenshots](#screenshots)
 - [Changelog](#changelog)
 - [License](#license)
@@ -33,7 +34,7 @@ Stereoscopic Image Viewer lets you embed 3D images on any WordPress post or page
 ## Features
 
 - **Gutenberg block** with live Canvas-rendered preview and full `InspectorControls`
-- **`[stereo_img]` shortcode** for the classic editor and widget areas
+- **`[sterimvi_image]` shortcode** for the classic editor and widget areas
 - **Settings page** with site-wide defaults for every parameter
 - **Swap left/right** sources with a single toggle
 - **Width, border, and drop shadow** controls per block
@@ -71,29 +72,29 @@ Stereoscopic Image Viewer lets you embed 3D images on any WordPress post or page
 
 ## Installation
 
-1. Upload the `wp-stereoscopic-viewer` folder to `/wp-content/plugins/`.
+1. Upload the `stereoscopic-image-viewer` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the **Plugins** menu in WordPress.
 3. Visit **Stereoscopic** in the admin menu to configure site-wide defaults.
-4. Add the **Stereoscopic Image** block in the Gutenberg editor, or use the `[stereo_img]` shortcode.
+4. Add the **Stereoscopic Image** block in the Gutenberg editor, or use the `[sterimvi_image]` shortcode.
 
 ## Quick Start
 
 The most common case — a side-by-side JPEG from a 3D camera, displayed as red-cyan anaglyph:
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc"]
 ```
 
 Two separate files, wiggle output (no glasses needed):
 
 ```
-[stereo_img src="https://example.com/left.jpg" src_right="https://example.com/right.jpg" source_format="pair" display_mode="wiggle"]
+[sterimvi_image src="https://example.com/left.jpg" src_right="https://example.com/right.jpg" source_format="pair" display_mode="wiggle"]
 ```
 
 Anamorphic (half-width side-by-side) source, red-cyan output, with border and drop shadow:
 
 ```
-[stereo_img src="https://example.com/hsbs.jpg" source_format="left-right" source_squeeze="1" display_mode="anaglyph-rc" border="1" border_width="2px" border_color="#222222" shadow="1" shadow_offset_x="0px" shadow_offset_y="6px" shadow_blur="16px" shadow_spread="0px" shadow_color="rgba(0,0,0,0.4)"]
+[sterimvi_image src="https://example.com/hsbs.jpg" source_format="left-right" source_squeeze="1" display_mode="anaglyph-rc" border="1" border_width="2px" border_color="#222222" shadow="1" shadow_offset_x="0px" shadow_offset_y="6px" shadow_blur="16px" shadow_spread="0px" shadow_color="rgba(0,0,0,0.4)"]
 ```
 
 ## Shortcode Reference
@@ -139,7 +140,7 @@ Every parameter can be overridden per-shortcode; anything you omit falls back to
 <summary><b>Side-by-side source, anaglyph output</b> — the most common case</summary>
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc"]
 ```
 </details>
 
@@ -147,7 +148,7 @@ Every parameter can be overridden per-shortcode; anything you omit falls back to
 <summary><b>Side-by-side source, wiggle output</b> — no glasses needed</summary>
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="wiggle"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="wiggle"]
 ```
 </details>
 
@@ -155,7 +156,7 @@ Every parameter can be overridden per-shortcode; anything you omit falls back to
 <summary><b>Top-bottom source, anaglyph output</b></summary>
 
 ```
-[stereo_img src="https://example.com/photo-tb.jpg" source_format="top-bottom" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/photo-tb.jpg" source_format="top-bottom" display_mode="anaglyph-rc"]
 ```
 </details>
 
@@ -165,7 +166,7 @@ Every parameter can be overridden per-shortcode; anything you omit falls back to
 Some 3D cameras save a squeezed (HSBS) image where each eye occupies half the frame width. Use `source_squeeze="1"` to unsqueeze it before rendering.
 
 ```
-[stereo_img src="https://example.com/photo-hsbs.jpg" source_format="left-right" source_squeeze="1" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/photo-hsbs.jpg" source_format="left-right" source_squeeze="1" display_mode="anaglyph-rc"]
 ```
 </details>
 
@@ -173,7 +174,7 @@ Some 3D cameras save a squeezed (HSBS) image where each eye occupies half the fr
 <summary><b>Anamorphic (half-height) top-bottom source</b></summary>
 
 ```
-[stereo_img src="https://example.com/photo-htb.jpg" source_format="top-bottom" source_squeeze="1" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/photo-htb.jpg" source_format="top-bottom" source_squeeze="1" display_mode="anaglyph-rc"]
 ```
 </details>
 
@@ -183,7 +184,7 @@ Some 3D cameras save a squeezed (HSBS) image where each eye occupies half the fr
 When you have two individual files — one per eye — use `source_format="pair"` and provide both `src` and `src_right`.
 
 ```
-[stereo_img src="https://example.com/left.jpg" src_right="https://example.com/right.jpg" source_format="pair" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/left.jpg" src_right="https://example.com/right.jpg" source_format="pair" display_mode="anaglyph-rc"]
 ```
 </details>
 
@@ -191,7 +192,7 @@ When you have two individual files — one per eye — use `source_format="pair"
 <summary><b>Separate images, wiggle output</b></summary>
 
 ```
-[stereo_img src="https://example.com/left.jpg" src_right="https://example.com/right.jpg" source_format="pair" display_mode="wiggle"]
+[sterimvi_image src="https://example.com/left.jpg" src_right="https://example.com/right.jpg" source_format="pair" display_mode="wiggle"]
 ```
 </details>
 
@@ -201,7 +202,7 @@ When you have two individual files — one per eye — use `source_format="pair"
 If your side-by-side image has the right eye on the left, add `swap="1"` to correct the eye order.
 
 ```
-[stereo_img src="https://example.com/photo-rls.jpg" source_format="left-right" swap="1" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/photo-rls.jpg" source_format="left-right" swap="1" display_mode="anaglyph-rc"]
 ```
 </details>
 
@@ -209,7 +210,7 @@ If your side-by-side image has the right eye on the left, add `swap="1"` to corr
 <summary><b>Anaglyph red-blue output</b> — for red-blue glasses</summary>
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rb"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rb"]
 ```
 </details>
 
@@ -219,7 +220,7 @@ If your side-by-side image has the right eye on the left, add `swap="1"` to corr
 The output places the left eye on the left and the right eye on the right.
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="side-by-side" width="800px"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="side-by-side" width="800px"]
 ```
 </details>
 
@@ -227,7 +228,7 @@ The output places the left eye on the left and the right eye on the right.
 <summary><b>Squeezed side-by-side output</b> — HSBS for compatible players</summary>
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="side-by-side" display_squeeze="1"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="side-by-side" display_squeeze="1"]
 ```
 </details>
 
@@ -237,7 +238,7 @@ The output places the left eye on the left and the right eye on the right.
 If your source image is already an anaglyph red-cyan composite, set both source and display to `anaglyph-rc`.
 
 ```
-[stereo_img src="https://example.com/photo-anaglyph.jpg" source_format="anaglyph-rc" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/photo-anaglyph.jpg" source_format="anaglyph-rc" display_mode="anaglyph-rc"]
 ```
 </details>
 
@@ -247,7 +248,7 @@ If your source image is already an anaglyph red-cyan composite, set both source 
 Row-interlaced images (common on polarised 3D monitor captures) can be decoded and re-displayed in any mode.
 
 ```
-[stereo_img src="https://example.com/photo-interlaced.jpg" source_format="interlaced-row" display_mode="anaglyph-rc"]
+[sterimvi_image src="https://example.com/photo-interlaced.jpg" source_format="interlaced-row" display_mode="anaglyph-rc"]
 ```
 </details>
 
@@ -255,7 +256,7 @@ Row-interlaced images (common on polarised 3D monitor captures) can be decoded a
 <summary><b>Fixed width</b></summary>
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc" width="640px"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc" width="640px"]
 ```
 </details>
 
@@ -263,7 +264,7 @@ Row-interlaced images (common on polarised 3D monitor captures) can be decoded a
 <summary><b>Responsive width capped at 80% of viewport</b></summary>
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc" width="80vw"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc" width="80vw"]
 ```
 </details>
 
@@ -271,7 +272,7 @@ Row-interlaced images (common on polarised 3D monitor captures) can be decoded a
 <summary><b>With border and drop shadow</b></summary>
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc" border="1" border_width="2px" border_color="#333333" shadow="1" shadow_offset_x="0px" shadow_offset_y="6px" shadow_blur="16px" shadow_spread="0px" shadow_color="rgba(0,0,0,0.35)"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc" border="1" border_width="2px" border_color="#333333" shadow="1" shadow_offset_x="0px" shadow_offset_y="6px" shadow_blur="16px" shadow_spread="0px" shadow_color="rgba(0,0,0,0.35)"]
 ```
 </details>
 
@@ -281,13 +282,13 @@ Row-interlaced images (common on polarised 3D monitor captures) can be decoded a
 Show only the wiggle and anaglyph buttons; hide the left/right-eye buttons:
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc" controlslist="wiggle anaglyph"]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="anaglyph-rc" controlslist="wiggle anaglyph"]
 ```
 
 Show no controls at all (viewer is static, no mode switching):
 
 ```
-[stereo_img src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="wiggle" controlslist=""]
+[sterimvi_image src="https://example.com/photo-sbs.jpg" source_format="left-right" display_mode="wiggle" controlslist=""]
 ```
 </details>
 
@@ -325,11 +326,160 @@ If you prefer, you can switch the **"stereo-img Load Method"** on the settings p
 - **External CDN** — load from `https://stereo-img.steren.fr/stereo-img.js`.
 - **Custom URL** — load from any URL you specify. Because stereo-img uses relative ES-module imports for its dependencies, the URL must point to a complete stereo-img release directory tree (not just the single JS file).
 
+## Developer Reference
+
+### Naming conventions
+
+Every identifier the plugin registers globally is prefixed, per the WordPress.org
+plugin guidelines. When adding code, follow the same scheme:
+
+| Kind | Convention | Example |
+| ---- | ---------- | ------- |
+| PHP namespace | `Nductiv\StereoscopicImageViewer` | `Nductiv\StereoscopicImageViewer\Block` |
+| Constants | `STERIMVI_` | `STERIMVI_DIR`, `STERIMVI_URL`, `STERIMVI_VERSION` |
+| Options, settings, sections, fields | `sterimvi_` | `sterimvi_settings` |
+| Shortcode | `sterimvi_` | `[sterimvi_image]` |
+| Script/style handles | `sterimvi-` | `sterimvi-block-editor` |
+| CSS classes | `.sterimvi-` | `.sterimvi-wrapper` |
+| JS globals | `Sterimvi` / `sterimvi` | `window.SterimviRenderer` |
+| Block name | `stereoscopic-image-viewer/` | `stereoscopic-image-viewer/stereo-img` |
+
+> **Do not rename** the `<stereo-img>` custom element, the `assets/vendor/stereo-img/`
+> directory, or the internal helpers `render_stereo_img()` / `resolve_stereo_img_url()`.
+> The first two are the third-party library's public API; the last two are private
+> method names, not globally registered identifiers.
+
+### File layout
+
+```
+stereoscopic-image-viewer.php   Plugin header, constants, bootstrap
+render.php                      Block server-side render callback
+uninstall.php                   Deletes sterimvi_settings (multisite-aware)
+block.json                      Block definition (apiVersion 3)
+includes/
+  class-plugin.php              Singleton; loads and wires the other classes
+  class-settings.php            Options API, settings page, sanitisation
+  class-assets.php              Script/style enqueueing, ES-module tag filter
+  class-block.php               Block registration + shared HTML renderer
+  class-shortcode.php           [sterimvi_image] shortcode
+admin/
+  settings-page.php             Settings page template + shortcode docs
+  admin.css
+assets/
+  js/renderer.js                window.SterimviRenderer (Canvas 2D)
+  js/viewer-init.js             Front-end canvas bootstrap
+  js/block-editor.js            Block editor UI (plain JS, no build step)
+  js/admin-settings.js          Settings page progressive disclosure
+  css/viewer.css, css/editor.css
+  vendor/stereo-img/            Bundled third-party library (do not edit)
+```
+
+There is **no build step**. `block-editor.js` uses the `wp.*` globals directly
+rather than JSX/webpack, so the files that ship are the files in the repo.
+
+### Architecture
+
+The block and the shortcode never render independently — both funnel into a
+single static method so their output is guaranteed identical:
+
+```
+Block (block.json → render.php) ─┐
+                                 ├─→ Block::render_viewer( array $atts ): string
+Shortcode::render() ─────────────┘
+```
+
+`Shortcode::render()` maps its `snake_case` attributes onto the `camelCase` block
+attribute names before delegating, so `source_format` ↔ `sourceFormat`,
+`src_right` ↔ `srcRight`, `border` ↔ `borderEnabled`, and so on.
+
+`render_viewer()` merges the incoming attributes over `Settings::get_defaults()`,
+validates every value (URLs, enums, CSS lengths and colours), and then picks one
+of two render paths:
+
+| Condition | Path | Output |
+| --------- | ---- | ------ |
+| `display_mode` ∈ `anaglyph-rb`, `interlaced-row`, `interlaced-col`, `side-by-side`, `top-bottom` | Canvas | `<canvas class="sterimvi-canvas" data-…>` |
+| `source_format` ∈ `anaglyph-rb`, `interlaced-row`, `interlaced-col` | Canvas | as above |
+| `source_squeeze` is on (needs unsqueezing) | Canvas | as above |
+| anything else | stereo-img | `<stereo-img src type flat controlslist>` |
+
+Both are wrapped in `<div class="sterimvi-wrapper" style="…">` carrying the
+width, border and box-shadow. The routing constants live on `Block`
+(`CANVAS_MODES`, `CANVAS_SOURCE_FORMATS`) and are mirrored in `block-editor.js`
+so the editor preview matches the front end — **change both together**.
+
+On the Canvas path, PHP emits only data attributes; `assets/js/viewer-init.js`
+finds each `.sterimvi-wrapper canvas.sterimvi-canvas`, reads
+`data-display-mode`, and dispatches to `window.SterimviRenderer`:
+
+```js
+SterimviRenderer.loadImage( url, crossOrigin )   // → Promise<HTMLImageElement>
+SterimviRenderer.splitLeftRight( img, swap, squeezed )
+SterimviRenderer.splitTopBottom( img, swap, squeezed )
+SterimviRenderer.splitPair( leftImg, rightImg, swap )
+SterimviRenderer.getSplitFromCanvas( canvas )    // reads the data-* attributes
+SterimviRenderer.renderSideBySide( left, right, canvas, squeeze )
+SterimviRenderer.renderTopBottom( left, right, canvas, squeeze )
+SterimviRenderer.renderAnaglyphRB( left, right, canvas )
+SterimviRenderer.renderInterlacedRows( left, right, canvas )
+SterimviRenderer.renderInterlacedCols( left, right, canvas )
+SterimviRenderer.showCanvasError( canvas, message )
+```
+
+Because this path reads pixels back out of the canvas, source images must be
+same-origin or CORS-enabled — hence the FAQ caveat about external URLs.
+
+### Settings
+
+All options live in a single serialised array under the `sterimvi_settings`
+option key, registered in the `sterimvi_settings_group` group.
+
+```php
+use Nductiv\StereoscopicImageViewer\Settings;
+
+$defaults = Settings::get_defaults();   // saved values merged over HARDCODED_DEFAULTS
+echo $defaults['display_mode'];         // 'anaglyph-rc'
+```
+
+`Settings::get_defaults()` is the only supported way to read configuration; it
+guarantees a complete array even when the option is missing or partial.
+`Settings::HARDCODED_DEFAULTS` defines the shipped fallbacks, and
+`Settings::SOURCE_FORMATS`, `::DISPLAY_MODES` and `::LOAD_METHODS` are the
+canonical enum lists used for sanitisation on both save and render.
+
+`uninstall.php` removes `sterimvi_settings` on every site in a multisite network.
+
+### Rendering from PHP
+
+To output a viewer from a template or another plugin, call the shortcode:
+
+```php
+echo do_shortcode( '[sterimvi_image src="' . esc_url( $url ) . '" display_mode="wiggle"]' );
+```
+
+`Block::render_viewer()` escapes all of its own output, so the returned string is
+safe to echo directly.
+
+### Local development
+
+There is no build or test toolchain to run — edit the files in place and reload.
+`mkzip.sh` assembles the distributable archive:
+
+```bash
+./mkzip.sh          # → stereoscopic-image-viewer.zip
+```
+
+To syntax-check the PHP without a full WordPress environment:
+
+```bash
+for f in *.php includes/*.php admin/*.php; do php -l "$f"; done
+```
+
 ## Screenshots
 
-1. Gutenberg block in the editor with `InspectorControls` open
-2. Anaglyph red-cyan display mode on the front end
-3. Plugin settings page
+1. The Stereoscopic Image block selected in the editor, with the Source Image, Display, and Size & Style panels open in the sidebar
+2. The plugin settings page, showing site-wide defaults, the stereo-img load method, and the built-in shortcode reference
+3. The Stereoscopic Image block as it appears in the block inserter
 
 ## Changelog
 

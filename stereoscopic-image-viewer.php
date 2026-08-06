@@ -17,10 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WPSV_VERSION', '1.0.0' );
-define( 'WPSV_DIR', plugin_dir_path( __FILE__ ) );
-define( 'WPSV_URL', plugin_dir_url( __FILE__ ) );
+define( 'STERIMVI_VERSION', '1.0.0' );
+define( 'STERIMVI_DIR', plugin_dir_path( __FILE__ ) );
+define( 'STERIMVI_URL', plugin_dir_url( __FILE__ ) );
 
-require_once WPSV_DIR . 'includes/class-plugin.php';
+require_once STERIMVI_DIR . 'includes/class-plugin.php';
 
-add_action( 'plugins_loaded', array( 'WPStereoscopicViewer\\Plugin', 'get_instance' ) );
+add_action( 'plugins_loaded', array( 'Nductiv\\StereoscopicImageViewer\\Plugin', 'get_instance' ) );

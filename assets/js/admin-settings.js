@@ -6,10 +6,10 @@
 jQuery( function ( $ ) {
 	'use strict';
 
-	var $cdnUrlRow = $( '#wpsv_cdn_url' ).closest( 'tr' );
+	var $cdnUrlRow = $( '#sterimvi_cdn_url' ).closest( 'tr' );
 
 	function toggleCdnUrlRow() {
-		var method = $( 'input[name="wpsv_settings[load_method]"]:checked' ).val();
+		var method = $( 'input[name="sterimvi_settings[load_method]"]:checked' ).val();
 		if ( method === 'self' ) {
 			$cdnUrlRow.show();
 		} else {
@@ -19,5 +19,5 @@ jQuery( function ( $ ) {
 
 	// Run on page load and on change.
 	toggleCdnUrlRow();
-	$( 'input[name="wpsv_settings[load_method]"]' ).on( 'change', toggleCdnUrlRow );
+	$( 'input[name="sterimvi_settings[load_method]"]' ).on( 'change', toggleCdnUrlRow );
 } );

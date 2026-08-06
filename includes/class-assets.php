@@ -2,10 +2,10 @@
 /**
  * Script and style enqueueing.
  *
- * @package WPStereoscopicViewer
+ * @package Nductiv\StereoscopicImageViewer
  */
 
-namespace WPStereoscopicViewer;
+namespace Nductiv\StereoscopicImageViewer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Assets {
 
 	/** Handles that need type="module" injected. Only the stereo-img library is an ES module. */
-	private array $module_handles = array( 'wpsv-stereo-img' );
+	private array $module_handles = array( 'sterimvi-stereo-img' );
 
 	/**
 	 * Register WordPress hooks.
@@ -44,31 +44,31 @@ class Assets {
 		$is_local       = ( 'local' === $defaults['load_method'] );
 
 		wp_enqueue_script(
-			'wpsv-stereo-img',
+			'sterimvi-stereo-img',
 			$stereo_img_url,
 			array(),
-			$is_local ? WPSV_VERSION : null,
+			$is_local ? STERIMVI_VERSION : null,
 			true
 		);
 
 		wp_enqueue_script(
-			'wpsv-renderer',
-			WPSV_URL . 'assets/js/renderer.js',
+			'sterimvi-renderer',
+			STERIMVI_URL . 'assets/js/renderer.js',
 			array(),
-			WPSV_VERSION,
+			STERIMVI_VERSION,
 			true
 		);
 
 		wp_enqueue_script(
-			'wpsv-viewer',
-			WPSV_URL . 'assets/js/viewer-init.js',
-			array( 'wpsv-renderer' ),
-			WPSV_VERSION,
+			'sterimvi-viewer',
+			STERIMVI_URL . 'assets/js/viewer-init.js',
+			array( 'sterimvi-renderer' ),
+			STERIMVI_VERSION,
 			true
 		);
 
-		// wpsv-viewer style is registered in Block::register_block() — just enqueue it.
-		wp_enqueue_style( 'wpsv-viewer' );
+		// sterimvi-viewer style is registered in Block::register_block() — just enqueue it.
+		wp_enqueue_style( 'sterimvi-viewer' );
 	}
 
 	/**
@@ -81,8 +81,8 @@ class Assets {
 	 * @return void
 	 */
 	public function enqueue_editor_assets(): void {
-		wp_enqueue_script( 'wpsv-block-editor' ); // registered in class-block.php
-		wp_enqueue_style( 'wpsv-editor' );         // registered in class-block.php
+		wp_enqueue_script( 'sterimvi-block-editor' ); // registered in class-block.php
+		wp_enqueue_style( 'sterimvi-editor' );         // registered in class-block.php
 	}
 
 	/**
@@ -92,22 +92,22 @@ class Assets {
 	 * @return void
 	 */
 	public function enqueue_admin_assets( string $hook ): void {
-		if ( 'toplevel_page_wp-stereoscopic-viewer' !== $hook ) {
+		if ( 'toplevel_page_stereoscopic-image-viewer' !== $hook ) {
 			return;
 		}
 
 		wp_enqueue_style(
-			'wpsv-admin',
-			WPSV_URL . 'admin/admin.css',
+			'sterimvi-admin',
+			STERIMVI_URL . 'admin/admin.css',
 			array(),
-			WPSV_VERSION
+			STERIMVI_VERSION
 		);
 
 		wp_enqueue_script(
-			'wpsv-admin',
-			WPSV_URL . 'assets/js/admin-settings.js',
+			'sterimvi-admin',
+			STERIMVI_URL . 'assets/js/admin-settings.js',
 			array( 'jquery' ),
-			WPSV_VERSION,
+			STERIMVI_VERSION,
 			true
 		);
 	}
@@ -143,7 +143,7 @@ class Assets {
 				return $defaults['cdn_url'];
 			case 'local':
 			default:
-				return WPSV_URL . 'assets/vendor/stereo-img/stereo-img.js';
+				return STERIMVI_URL . 'assets/vendor/stereo-img/stereo-img.js';
 		}
 	}
 }

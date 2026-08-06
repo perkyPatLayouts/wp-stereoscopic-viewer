@@ -1,14 +1,14 @@
 /* Stereoscopic Image Viewer — frontend styles */
 
-.wpsv-wrapper {
+.sterimvi-wrapper {
 	display: block;
 	max-width: 100%;
 	overflow: hidden;
 	box-sizing: border-box;
 }
 
-.wpsv-wrapper stereo-img,
-.wpsv-wrapper canvas.wpsv-canvas {
+.sterimvi-wrapper stereo-img,
+.sterimvi-wrapper canvas.sterimvi-canvas {
 	display: block;
 	width: 100%;
 	height: auto;
